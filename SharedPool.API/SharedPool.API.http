@@ -1,0 +1,6 @@
+@SharedPool.API_HostAddress = http://localhost:5294
+
+GET {{SharedPool.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
