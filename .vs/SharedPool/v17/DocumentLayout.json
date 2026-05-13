@@ -1,7 +1,24 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Github\\SharedPool\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{58129577-52FA-40EC-8ADA-8E680D53F63C}|SharedPool.Infrastructure\\SharedPool.Infrastructure.csproj|c:\\github\\sharedpool\\sharedpool.infrastructure\\contexts\\sharedpooldbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58129577-52FA-40EC-8ADA-8E680D53F63C}|SharedPool.Infrastructure\\SharedPool.Infrastructure.csproj|solutionrelative:sharedpool.infrastructure\\contexts\\sharedpooldbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58129577-52FA-40EC-8ADA-8E680D53F63C}|SharedPool.Infrastructure\\SharedPool.Infrastructure.csproj|c:\\github\\sharedpool\\sharedpool.infrastructure\\interceptors\\auditableentityinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58129577-52FA-40EC-8ADA-8E680D53F63C}|SharedPool.Infrastructure\\SharedPool.Infrastructure.csproj|solutionrelative:sharedpool.infrastructure\\interceptors\\auditableentityinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58129577-52FA-40EC-8ADA-8E680D53F63C}|SharedPool.Infrastructure\\SharedPool.Infrastructure.csproj|c:\\github\\sharedpool\\sharedpool.infrastructure\\configurations\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58129577-52FA-40EC-8ADA-8E680D53F63C}|SharedPool.Infrastructure\\SharedPool.Infrastructure.csproj|solutionrelative:sharedpool.infrastructure\\configurations\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D5B1FB5-267D-477A-A1C7-FDEDB0A56B52}|SharedPool.Domain\\SharedPool.Domain.csproj|c:\\github\\sharedpool\\sharedpool.domain\\entities\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6D5B1FB5-267D-477A-A1C7-FDEDB0A56B52}|SharedPool.Domain\\SharedPool.Domain.csproj|solutionrelative:sharedpool.domain\\entities\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +43,58 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuditableEntityInterceptor.cs",
+              "DocumentMoniker": "C:\\Github\\SharedPool\\SharedPool.Infrastructure\\Interceptors\\AuditableEntityInterceptor.cs",
+              "RelativeDocumentMoniker": "SharedPool.Infrastructure\\Interceptors\\AuditableEntityInterceptor.cs",
+              "ToolTip": "C:\\Github\\SharedPool\\SharedPool.Infrastructure\\Interceptors\\AuditableEntityInterceptor.cs",
+              "RelativeToolTip": "SharedPool.Infrastructure\\Interceptors\\AuditableEntityInterceptor.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAawC8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T20:23:52.293Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SharedPoolDbContext.cs",
+              "DocumentMoniker": "C:\\Github\\SharedPool\\SharedPool.Infrastructure\\Contexts\\SharedPoolDbContext.cs",
+              "RelativeDocumentMoniker": "SharedPool.Infrastructure\\Contexts\\SharedPoolDbContext.cs",
+              "ToolTip": "C:\\Github\\SharedPool\\SharedPool.Infrastructure\\Contexts\\SharedPoolDbContext.cs",
+              "RelativeToolTip": "SharedPool.Infrastructure\\Contexts\\SharedPoolDbContext.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAMwBUAAACAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T20:17:21.259Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BaseEntity.cs",
+              "DocumentMoniker": "C:\\Github\\SharedPool\\SharedPool.Domain\\Entities\\BaseEntity.cs",
+              "RelativeDocumentMoniker": "SharedPool.Domain\\Entities\\BaseEntity.cs",
+              "ToolTip": "C:\\Github\\SharedPool\\SharedPool.Domain\\Entities\\BaseEntity.cs",
+              "RelativeToolTip": "SharedPool.Domain\\Entities\\BaseEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T20:10:29.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserConfiguration.cs",
+              "DocumentMoniker": "C:\\Github\\SharedPool\\SharedPool.Infrastructure\\Configurations\\UserConfiguration.cs",
+              "RelativeDocumentMoniker": "SharedPool.Infrastructure\\Configurations\\UserConfiguration.cs",
+              "ToolTip": "C:\\Github\\SharedPool\\SharedPool.Infrastructure\\Configurations\\UserConfiguration.cs",
+              "RelativeToolTip": "SharedPool.Infrastructure\\Configurations\\UserConfiguration.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAowBYAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T20:09:45.76Z",
+              "EditorCaption": ""
             }
           ]
         }

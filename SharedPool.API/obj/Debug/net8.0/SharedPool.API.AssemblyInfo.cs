@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SharedPool.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f3f891a68c17816b9a7fa64527a70314b295bc49")]
 [assembly: System.Reflection.AssemblyProductAttribute("SharedPool.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SharedPool.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
