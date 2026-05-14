@@ -7,7 +7,14 @@ using SharedPool.Domain.Interfaces;
 using SharedPool.Infrastructure.Contexts;
 using SharedPool.Infrastructure.Repositories;
 
+DotNetEnv.Env.Load(Path.Combine(Directory.GetCurrentDirectory(), "..", ".env"));
+
 var builder = WebApplication.CreateBuilder(args);
+
+// 3. Adım: Bağlantı dizesini önce sistem değişkenlerinden (Docker veya .env), 
+// yoksa appsettings.json'dan alacak şekilde kurguluyoruz.
+var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection")
+                      ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Add services to the container.
 
@@ -18,7 +25,7 @@ builder.Services.AddSwaggerGen();
 
 // 1. Veritabanı Yapılandırması (PostgreSQL)
 builder.Services.AddDbContext<SharedPoolDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(connectionString));
 
 // 2. Dependency Injection (IoC) Kayıtları
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

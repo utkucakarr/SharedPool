@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SharedPool.Application.Features.Groups.Commands.AddUserToGroup;
 using SharedPool.Application.Features.Groups.Commands.CreateGroup;
 
 namespace SharedPool.API.Controllers
@@ -23,6 +24,18 @@ namespace SharedPool.API.Controllers
 
             // İşlem başarılıysa 201 Created ve oluşan Grubun ID'sini dönüyoruz
             return Created(string.Empty, new { Id = groupId });
+        }
+
+        [HttpPost("{groupId}/members")]
+        public async Task<IActionResult> AddUserToGroup(Guid groupId, [FromBody] Guid userId)
+        {
+            // URL'den gelen GroupId ile Body'den gelen UserId'yi birleştirip Command'i oluşturuyoruz
+            var command = new AddUserToGroupCommand(groupId, userId);
+
+            await _mediator.Send(command);
+
+            // İşlem başarılıysa içerik dönmeden sadece 200 OK veriyoruz
+            return Ok();
         }
     }
 }

@@ -32,7 +32,7 @@ namespace SharedPool.Application.Features.Groups.Commands.AddUserToGroup
                 throw new BusinessException("Belirtilen grup bulunamadı");
 
             // Kullanıcı var mı kontrolü
-            var user = await _userGroupRepository.GetByIdAsync(request.UserId);
+            var user = await _userRepository.GetByIdAsync(request.UserId);
             if (user == null)
                 throw new BusinessException("Belirtilen kullanıcı bulunamadı.");
 
@@ -42,6 +42,15 @@ namespace SharedPool.Application.Features.Groups.Commands.AddUserToGroup
 
             if (existingMembership.Any())
                 throw new BusinessException("Bu kullanıcı zaten gruba üye");
+
+            // Kontrollerden geçti, ara tabloya (UserGroup) kaydı ekle
+            var userGroup = new UserGroup(request.UserId, request.GroupId);
+
+            await _userGroupRepository.AddAsync(userGroup);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            // MediatR void dönüşü
+            return Unit.Value;
         }
     }
 }
