@@ -1,16 +1,32 @@
 version: '3.8'
 
 services:
-  postgres-db: 
-    image: postgres:17 
+  postgres-db:
+    image: postgres:17 # En stabil sürüm olan 17'yi kullanmanı öneririm
+    container_name: sharedpool-postgres
     environment:
-      POSTGRES_USER: sharedpool
-      POSTGRES_PASSWORD: sharedpool123
-      POSTGRES_DB: SharedPoolDb
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
       - "5434:5432"
     volumes:
+      # ÖNEMLİ: Hata almamak için /data kısmını sildik
       - postgres_data:/var/lib/postgresql
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sharedpool-api
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      # Konteynır içi iletişimde port 5432 olmalı (Doğru yapmışsın)
+      - ConnectionStrings__DefaultConnection=Host=postgres-db;Port=5432;Database=${DB_NAME};Username=${DB_USER};Password=${DB_PASSWORD}
+    depends_on:
+      - postgres-db
 
 volumes:
   postgres_data:

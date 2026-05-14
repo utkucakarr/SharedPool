@@ -4,7 +4,6 @@ using MediatR;
 namespace SharedPool.Application.Behaviors
 {
     // IPipelineBehavior: MediatR'ın middleware'idir.
-    // IPipelineBehavior: MediatR'ın middleware'idir.
     public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
     {
