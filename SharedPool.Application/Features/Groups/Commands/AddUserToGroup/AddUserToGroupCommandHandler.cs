@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using SharedPool.Application.Exceptions;
 using SharedPool.Domain.Entities;
+using SharedPool.Domain.Exceptions;
 using SharedPool.Domain.Interfaces;
 
 namespace SharedPool.Application.Features.Groups.Commands.AddUserToGroup

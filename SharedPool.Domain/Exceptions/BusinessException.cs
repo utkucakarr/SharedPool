@@ -1,4 +1,4 @@
-﻿namespace SharedPool.Application.Exceptions
+﻿namespace SharedPool.Domain.Exceptions
 {
     public class BusinessException : Exception
     {

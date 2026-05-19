@@ -1,4 +1,6 @@
-﻿namespace SharedPool.Domain.Entities
+﻿using SharedPool.Domain.Enums;
+
+namespace SharedPool.Domain.Entities
 {
     public class Expense : BaseEntity
     {
@@ -7,6 +9,7 @@
         public Guid GroupId { get; private set; }
         public Guid PayerUserId { get; private set; } // Hesabı kim ödedi?
         public DateTime ExpenseDate { get; private set; }
+        public SplitType SplitType { get; private set; } = SplitType.Equal; // + STRATEJİ İÇİN EKLENDİ
 
         // Navigation Properties
         public virtual Group Group { get; private set; }

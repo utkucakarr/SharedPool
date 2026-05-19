@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using SharedPool.Application.Exceptions;
+using SharedPool.Domain.Exceptions;
 
 namespace SharedPool.API.Exceptions
 {
