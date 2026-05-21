@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SharedPool.Application.Features.Groups.Commands.AddUserToGroup;
 using SharedPool.Application.Features.Groups.Commands.CreateGroup;
+using SharedPool.Application.Features.Groups.Queries.GetGroupBalances;
 
 namespace SharedPool.API.Controllers
 {
@@ -36,6 +37,15 @@ namespace SharedPool.API.Controllers
 
             // İşlem başarılıysa içerik dönmeden sadece 200 OK veriyoruz
             return Ok();
+        }
+
+        [HttpGet("{groupId}/balances")]
+        public async Task<IActionResult> GetGroupBalances(Guid groupId)
+        {
+            var query = new GetGroupBalancesQuery(groupId);
+            var balances = await _mediator.Send(query);
+
+            return Ok(balances);
         }
     }
 }
