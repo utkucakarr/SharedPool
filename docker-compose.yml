@@ -12,7 +12,17 @@ services:
       - "5434:5432"
     volumes:
       # ÖNEMLİ: Hata almamak için /data kısmını sildik
-      - postgres_data:/var/lib/postgresql
+      - postgres_data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: sharedpool_rabbitmq
+    ports:
+      - "5672:5672"   # Uygulamamızın (API) RabbitMQ ile haberleşeceği port
+      - "15672:15672" # Bizim tarayıcıdan girip izleyeceğimiz Yönetim Paneli (UI) portu
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
 
   api:
     build:
@@ -27,6 +37,7 @@ services:
       - ConnectionStrings__DefaultConnection=Host=postgres-db;Port=5432;Database=${DB_NAME};Username=${DB_USER};Password=${DB_PASSWORD}
     depends_on:
       - postgres-db
+      - rabbitmq
 
 volumes:
   postgres_data:

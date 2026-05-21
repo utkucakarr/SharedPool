@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using MassTransit;
+using MediatR;
+using SharedPool.Application.Events;
 using SharedPool.Domain.Entities;
 using SharedPool.Domain.Enums;
 using SharedPool.Domain.Exceptions;
@@ -12,17 +14,20 @@ namespace SharedPool.Application.Features.Expenses.Commands.CreateExpense
         private readonly IGenericRepository<Expense> _expenseRepository;
         private readonly IGenericRepository<ExpenseSplit> _expenseSplitRepository;
         private readonly IGenericRepository<UserGroup> _userGroupRepository;
+        private readonly IPublishEndpoint _publishEndpoint;
         private readonly IUnitOfWork _unitOfWork;
 
         public CreateExpenseCommandHandler(
             IGenericRepository<Expense> expenseRepository,
             IGenericRepository<ExpenseSplit> expenseSplithRepository,
             IGenericRepository<UserGroup> userGroupRepository,
+            IPublishEndpoint publishEndpoint,
             IUnitOfWork unitOfWork)
         {
             _expenseRepository = expenseRepository;
             _expenseSplitRepository = expenseSplithRepository;
             _userGroupRepository = userGroupRepository;
+            _publishEndpoint = publishEndpoint;
             _unitOfWork = unitOfWork;
         }
 
@@ -84,6 +89,19 @@ namespace SharedPool.Application.Features.Expenses.Commands.CreateExpense
 
             // 5. Veritabanına Kaydet
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            // --- 6. EVENT FIRLATMA (RabbitMQ'ya Mesaj Gönderme) ---
+            var expenseCreatedEvent = new ExpenseCreatedEvent
+            {
+                ExpenseId = expense.Id,
+                GroupId = expense.GroupId,
+                PayerUserId = expense.PayerUserId,
+                TotalAmount = expense.TotalAmount,
+                Splits = calculatedSplits.Select(s => new ExpenseSplitEventModel(s.UserId, s.CalculatedAmount)).ToList()
+            };
+
+            // Mesajı kuyruğa fırlatıyoruz!
+            await _publishEndpoint.Publish(expenseCreatedEvent, cancellationToken);
 
             return expense.Id;
         }

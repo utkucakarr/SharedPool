@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SharedPool.Infrastructure.Contexts;
@@ -11,9 +12,11 @@ using SharedPool.Infrastructure.Contexts;
 namespace SharedPool.Infrastructure.Migrations
 {
     [DbContext(typeof(SharedPoolDbContext))]
-    partial class SharedPoolDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260521072939_AddUserBalanceTable")]
+    partial class AddUserBalanceTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

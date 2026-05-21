@@ -17,6 +17,7 @@
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.5.4" />
     <PackageReference Include="Mapster" Version="10.0.7" />
     <PackageReference Include="Mapster.DependencyInjection" Version="10.0.7" />
+    <PackageReference Include="MassTransit" Version="8.3.6" />
     <PackageReference Include="MediatR" Version="14.1.0" />
   </ItemGroup>
 

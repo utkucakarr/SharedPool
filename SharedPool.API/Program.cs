@@ -1,7 +1,9 @@
 ﻿using FluentValidation;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using SharedPool.API.Exceptions;
 using SharedPool.Application.Behaviors;
+using SharedPool.Application.Consumers;
 using SharedPool.Application.DTOs.SharedPool.Application.DTOs;
 using SharedPool.Domain.Interfaces;
 using SharedPool.Infrastructure.Contexts;
@@ -45,14 +47,27 @@ builder.Services.AddMediatR(cfg =>
 // Assembly içindeki tüm Validator'ları otomatik bul ve kaydet
 builder.Services.AddValidatorsFromAssembly(applicationAssembly);
 
+builder.Services.AddMassTransit(x =>
+{
+    x.AddConsumer<ExpenseCreatedEventConsumer>();
+
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        // Docker Compose'da servis adını "rabbitmq" verdiğimiz için Host olarak onu kullanıyoruz
+        // Eğer projeyi Docker dışında (Visual Studio'dan) çalıştırsaydık "localhost" yazacaktık
+        cfg.Host("rabbitmq", "/", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+
+        cfg.ConfigureEndpoints(context);
+    });
+});
+
 // 4. Global Exception Handler (.NET 8 standardı)
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
-
-// 5. Standart API Servisleri
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 

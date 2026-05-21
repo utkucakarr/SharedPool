@@ -16,6 +16,7 @@ namespace SharedPool.Infrastructure.Contexts
         public DbSet<UserGroup> UserGroups { get; set; }
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<ExpenseSplit> ExpenseSplits { get; set; }
+        public DbSet<UserBalance> UserBalances { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
