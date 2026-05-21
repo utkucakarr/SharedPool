@@ -89,6 +89,22 @@ This keeps controllers clean and moves validation logic into the application lay
 
 ---
 
+## Event-Driven Architecture (EDA) & Asynchronous Balance Management
+
+To maintain minimum **Response Time** during high-traffic periods and reduce **Coupling** between services, the project implements an **Event-Driven Architecture (EDA)**.
+
+Calculations such as "who owes how much to whom" are not performed via traditional (synchronous) methods at the API layer. Instead, an asynchronous communication network (Pub/Sub) has been established using **RabbitMQ and MassTransit**.
+
+* **Publisher:** When a user creates a new expense, once the database transaction is successfully completed, the system triggers an `ExpenseCreatedEvent` to RabbitMQ and immediately returns a `201 Created` response to the user.
+* **Consumer:** An independent background listener (`ExpenseCreatedEventConsumer`) captures this event from the queue. It reads the split data within the event and updates the `UserBalances` table, which is optimized for read/query operations.
+
+**Benefits of This Architecture:**
+1.  **Isolation and Performance:** The balance calculation load is offloaded from the main API flow to background services.
+2.  **Scalability:** The system can be extended by simply adding new Consumers (e.g., for sending Notifications) without modifying existing code (**Open/Closed Principle**).
+3.  **Eventual Consistency:** System components operate independently, and data reaches final consistency within milliseconds.
+
+---
+
 # Core Features
 
 ## User & Group Management
